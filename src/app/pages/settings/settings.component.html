@@ -1,0 +1,90 @@
+<div class="container mt-5 container-front">
+    <!-- Settings Header -->
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <h2><i class="fa fa-cogs"></i> Account Settings</h2>
+        </div>
+    </div>
+
+    @if (!is2FAEnabled && !isQrCodeGenerated) {
+    <!-- Two-Factor Authentication Section -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">
+                <i class="fa fa-shield-alt"></i> Two-Factor Authentication (2FA)
+            </h5>
+            <p class="card-text">
+                Add an extra layer of security to your account by enabling two-factor authentication. Once enabled, you
+                will need to enter a verification code sent to your registered device.
+            </p>
+
+            <!-- Toggle Switch for 2FA -->
+            <div class="d-flex justify-content-between align-items-center">
+                <span>Enable Two-Factor Authentication</span>
+                <label class="switch">
+                    <input type="checkbox" [disabled]="isQrCodeGenerated" (change)="toggle2FA()">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            @if (enable2FA) {
+            <!-- Additional 2FA Information (Shown when toggle is enabled) -->
+            <div class="mt-3">
+                <p>
+                    <i class="fa fa-info-circle"></i> Please set up a 2FA device in your account. We recommend using an
+                    authenticator app like Google Authenticator.
+                </p>
+                <button class="btn btn-primary" [disabled]="isQrCodeGenerated" (click)="enableTwoFA()"><i
+                        class="fa fa-mobile-alt"></i> Set Up 2FA</button>
+            </div>
+            }
+        </div>
+    </div>
+    }
+    @if (isQrCodeGenerated) {
+    <!-- Show when QR code is available for setting up 2FA -->
+    <div class="card shadow-sm border-primary">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Scan this QR Code to Enable 2FA</h5>
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="card-body text-center">
+            <qrcode [qrdata]="qrCodeUrl" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+            <p class="mt-3">Use Google Authenticator or similar app to scan this code.</p>
+        </div>
+    </div>
+    }
+
+    @if (is2FAEnabled && !isQrCodeGenerated) {
+    <div class="card shadow-sm border-primary">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Two-Factor Authentication (2FA)</h5>
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="card-body">
+            <div class="text-center mb-3">
+                <i class="fas fa-check-circle text-success fa-3x"></i>
+                <h5 class="mt-3">2FA is Enabled</h5>
+                <p>Your account is secured with Two-Factor Authentication using the Google Authenticator app.</p>
+            </div>
+
+            <!-- Instructions Section -->
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> When logging in, open your authenticator app and enter the 6-digit
+                code to access your account.
+            </div>
+
+            <!-- Button to disable 2FA -->
+            <div class="text-center">
+                <button class="btn btn-danger" (click)="diable2FA()">
+                    <i class="fas fa-lock-open"></i> Disable 2FA
+                </button>
+            </div>
+        </div>
+
+        <div class="card-footer text-muted text-center">
+            <small><i class="fas fa-exclamation-triangle"></i> Keep your backup codes in a safe place.</small>
+        </div>
+    </div>
+    }
+</div>

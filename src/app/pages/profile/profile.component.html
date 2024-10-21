@@ -1,0 +1,97 @@
+@if(!isEdit){
+<div class="container mt-5" *ngIf="user$ | async as user">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card profile-card shadow-sm border-0">
+          <div class="card-header text-center bg-light">
+            <!-- Default Profile Icon -->
+            <div class="profile-icon-container">
+              <i class="fas fa-user-circle profile-icon"></i>
+            </div>
+            <h4 class="mb-1">{{  user.name }}</h4>
+            <p class="text-muted">{{  user.email }}</p>
+          </div>
+  
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Phone:</strong> {{  user.phoneNo }}
+              </li>
+              <li class="list-group-item">
+                <strong>Sex:</strong> {{  user.sex }}
+              </li>
+              <li class="list-group-item">
+                <strong>Date of Birth :</strong> {{  user.dob| date:'fullDate' }}
+              </li>
+              <li class="list-group-item">
+                <strong>Address:</strong> {{ user.address }}
+              </li>
+            </ul>
+          </div>
+  
+          <div class="card-footer d-flex justify-content-center gap-2">
+            <button class="btn btn-outline-primary" (click)="editProfile()">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+} 
+@if(isEdit){
+
+<div class="profile-update-container mt-5">
+  <h2 class="text-center mb-4">User Profile</h2>
+  <div class="card">
+      <div class="card-header text-white bg-primary">
+          <i class="fas fa-user-circle"></i> Profile Information
+      </div>
+      <div class="card-body">
+          <form>
+              <div class="mb-4">
+                  <label for="firstname" class="form-label">First Name</label>
+                  <input type="text" id="firstname" class="form-control" [(ngModel)]="profile.firstname" name="firstname"  required>
+              </div>
+              <div class="mb-4">
+                <label for="lastname" class="form-label">Last Name</label>
+                <input type="text" id="lastname" class="form-control" [(ngModel)]="profile.lastname" name="lastname"  required>
+            </div>
+              <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" id="email" class="form-control" [(ngModel)]="profile.email" name="email"   readonly>
+              </div>
+              <div class="mb-3">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="tel" id="phone" class="form-control" [(ngModel)]="profile.phoneNo" name="phoneNo"  required>
+              </div>
+              <div class="mb-3">
+                <label for="dob" class="form-label">Date of Birth</label>
+                <input type="date" id="dob" class="form-control" [(ngModel)]="profile.dob" name="dob"  required>
+            </div>
+              <div class="mb-3">
+                  <label for="sex" class="form-label">Gender</label>
+                  <select id="sex" class="form-select" [(ngModel)]="profile.sex" name="sex" required>
+                      <option value="" disabled selected>Select your gender</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                  <label for="address" class="form-label">Address</label>
+                  <textarea id="address" class="form-control" rows="3" [(ngModel)]="profile.address" name="address"  required></textarea>
+              </div>
+              <div class="text-center">
+                  <button type="submit" class="btn btn-success" (click)="updateProfile()">
+                      <i class="fas fa-save"></i> Save Changes
+                  </button>
+                  <button type="button" class="btn btn-secondary ms-3" onclick="window.history.back();">
+                      <i class="fas fa-times-circle"></i> Cancel
+                  </button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+}

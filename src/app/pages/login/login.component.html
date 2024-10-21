@@ -1,0 +1,157 @@
+@if (isLoginPage) 
+{
+<div class="login-container">
+    <div class="card">
+        <div class="card-header">
+            Login to your account
+        </div>
+        <div class="card-body">
+            <form [formGroup]="loginForm">
+                <!-- Email Address -->
+                <div class="form-group position-relative">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" class="form-control" formControlName="email" 
+                    [ngClass]="{ 'is-invalid': isLoginInvalid('email') }" id="email" placeholder="Email Address" required>
+
+                    <div *ngIf="isLoginInvalid('email')" class="invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i> Email is required.
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group position-relative mt-3">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" class="form-control" formControlName="password" 
+                    [ngClass]="{ 'is-invalid': isLoginInvalid('password') }" id="password" placeholder="Password" required>
+
+                    <div *ngIf="isLoginInvalid('password')" class="invalid-feedback">
+                        <i class="fas fa-exclamation-circle"></i> Password is required.
+                    </div>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-login mt-4" [disabled]="loginForm.invalid" (click)="signinUser()">Sign In</button>
+
+                <!-- Forgot Password & Sign-up Links -->
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="#" (click) ="singup($event)">Sign up</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+}
+@if (!isLoginPage){
+<div class="login-container">
+    <div class="signup-card">
+        <div class="card-header">
+            Sign Up and Start Your Journey
+        </div>
+        <div class="card-body">
+        <form [formGroup]="signupForm">
+            <!-- First Name -->
+            <div class="form-group mb-3 position-relative">
+                <i class="fas fa-user"></i>
+                <input type="text" class="form-control" formControlName="firstname" 
+                [ngClass]="{ 'is-invalid': isInvalid('firstname') }" id="firstname" placeholder="First Name" required>
+                
+                <div *ngIf="isInvalid('firstname')" class="invalid-feedback">
+                    <i class="fas fa-exclamation-circle"></i> First name is required.
+                </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group mb-3 position-relative">
+                <i class="fas fa-user"></i>
+                <input type="text" class="form-control"  formControlName="lastname" 
+                [ngClass]="{ 'is-invalid': isInvalid('lastname') }" id="lastname" placeholder="Last Name" required>
+
+                <div *ngIf="isInvalid('lastname')" class="invalid-feedback">
+                    <i class="fas fa-exclamation-circle"></i> Last name is required.
+                </div>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group mb-3 position-relative">
+                <i class="fas fa-envelope"></i>
+                <input type="email" class="form-control" formControlName="email" 
+                [ngClass]="{ 'is-invalid': isInvalid('email') }" id="email" placeholder="Email Address" required>
+
+                <div *ngIf="isInvalid('email')" class="invalid-feedback">
+                    <i class="fas fa-exclamation-circle"></i> Email is required.
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group mb-3 position-relative">
+                <i class="fas fa-lock"></i>
+                <input type="password" class="form-control"  formControlName="password" 
+                [ngClass]="{ 'is-invalid': isInvalid('password') }" id="password" placeholder="Password" required>
+
+                <div *ngIf="isInvalid('password')" class="invalid-feedback">
+                    <i class="fas fa-exclamation-circle"></i> Password is required.
+                </div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group mb-3 position-relative">
+                <i class="fas fa-phone"></i>
+                <input type="text" class="form-control" formControlName="phoneNo" 
+                [ngClass]="{ 'is-invalid': isInvalid('phoneNo') }" id="phoneNo" placeholder="Phone Number" required>
+
+                <div *ngIf="isInvalid('phoneNo')" class="invalid-feedback">
+                    <i class="fas fa-exclamation-circle"></i> Phone No is required.
+                </div>
+            </div>
+
+            <div class="form-group mb-3 position-relative">
+                <i class="fa fa-calendar"></i>
+                <input type="date" class="form-control" formControlName="dob" 
+                [ngClass]="{ 'is-invalid': isInvalid('dob') }" id="dob" placeholder="Date Of Birth" required>
+
+                <div *ngIf="isInvalid('dob')" class="invalid-feedback">
+                    <i class="fas fa-exclamation-circle"></i> Date Of Birth is required.
+                </div>
+            </div>
+
+            <!-- Sex -->
+            <div class="form-group mb-3 position-relative">
+                <i class="fas fa-venus-mars"></i>
+                <select id="sex" class="form-control" formControlName="sex"
+                [ngClass]="{ 'is-invalid': isInvalid('sex') }" id="sex" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <div *ngIf="isInvalid('sex')" class="invalid-feedback">
+                    <i class="fas fa-exclamation-circle"></i> Sex  is required.
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="form-group mb-3 position-relative">
+                <i class="fas fa-map-marker-alt"></i>
+                <textarea class="form-control" formControlName="address" 
+                [ngClass]="{ 'is-invalid': isInvalid('address') }" id="address" rows="4" placeholder="Address" maxlength="1000" required></textarea>
+
+                <div *ngIf="isInvalid('address')" class="invalid-feedback">
+                    <i class="fas fa-exclamation-circle"></i> Address is required.
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid" (click)="registerUser()"><i class="fas fa-sign-in-alt"></i> Sign Up</button>
+            </div>
+            <!-- Already have an account -->
+            <div class="form-footer">
+                <p class="mt-3">Already have an account? <a href="#" (click) ="singin($event)">Log In</a></p>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+}
+    

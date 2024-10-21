@@ -1,0 +1,52 @@
+<div class="container mt-5">
+    <h2 *ngIf="user$ |async as user">Welcome back!  {{ user.name }}</h2>
+    <p class="text-muted">Here's a quick overview of your account and activity.</p>
+
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <i class="fas fa-user fa-2x mb-3"></i>
+            <h5 class="card-title">Profile</h5>
+            <a routerLink="/profile" class="btn btn-outline-primary mt-2">Go to Profile</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <i class="fas fa-cog fa-2x mb-3"></i>
+            <h5 class="card-title">Settings</h5>
+            <a routerLink="/settings" class="btn btn-outline-primary mt-2">Manage Settings</a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body text-center">
+            <i class="fas fa-bell fa-2x mb-3"></i>
+            <h5 class="card-title">Notifications</h5>
+            <button class="btn btn-outline-primary mt-2">View Alerts</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="mt-5">
+        <h3 class="mb-4 text-center">Recent Activity</h3>
+        <div class="d-flex justify-content-center">
+          <div class="card recent-activity-card shadow-sm">
+            <div class="card-body text-center">
+              <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+              <p class="text-muted">Last Login</p>
+              <p class="card-text">
+                <span class="text-muted">You logged in on:</span><br />
+                <strong *ngIf="user$ |async as user">{{ user.lastLogIn| date:'fullDate' }} at {{ user.lastLogIn| date:'shortTime' }}</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>

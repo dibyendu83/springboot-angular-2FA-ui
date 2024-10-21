@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" 
+                routerLink="/home"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" 
+                routerLink="/profile"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"><i class="fas fa-user"></i> Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" 
+                routerLink="/settings"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"><i class="fas fa-cogs"></i> Settings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notifications</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages</a>
+            </li>
+        </ul>
+    </div>
+    <a class="btn btn-outline-danger btn-logout"(click)="logout()" ><i class="fas fa-sign-out-alt"></i> Log Out</a>
+</nav>
+
+<router-outlet/>

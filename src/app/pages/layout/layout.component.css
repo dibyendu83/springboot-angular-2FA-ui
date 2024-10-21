@@ -1,0 +1,56 @@
+/* Centering and adjusting the width of the navbar */
+
+.navbar {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+/* Adjusting the position of the nav links */
+.navbar-nav {
+    margin-left: 200px; /* Shift links slightly towards the center */
+}
+
+
+
+
+.navbar-nav .nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 15px;
+    color: #333 !important;
+}
+
+.nav-link.active {
+    color: #333; /* Primary color for active link */
+    font-weight: 600; /* Bold for emphasis */
+    border-bottom: 2px solid #333; /* Underline effect */
+  }
+
+.navbar-nav .nav-link:hover {
+    background-color: #e9ecef;
+    border-radius: 5px;
+}
+
+.btn-logout {
+    font-size: 16px;
+    font-weight: 600;
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-logout:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+@media (max-width: 992px) {
+    .navbar-container {
+        max-width: 100%; /* Full width on smaller screens */
+        padding: 0 10px;
+    }
+    .navbar-nav {
+        margin-left: 0; /* Reset margin for small screens */
+    }
+}
